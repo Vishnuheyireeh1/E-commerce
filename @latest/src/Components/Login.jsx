@@ -29,15 +29,12 @@ const Auth = () => {
           password: formData.password 
         });
 
-        // 1. Save Data to LocalStorage
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('user', JSON.stringify(res.data.user));
-        // Saving role separately makes it easy for the Navbar to check isAdmin
         localStorage.setItem('role', res.data.user.role); 
 
         toast.success(`Welcome back, ${res.data.user.name}`);
 
-        // 2. Handle Conditional Navigation
         if (res.data.user.role === 'admin') {
           console.log("Admin detected. Redirecting to Admin Dashboard...");
           setTimeout(() => navigate('/admin-dashboard'), 1500); 

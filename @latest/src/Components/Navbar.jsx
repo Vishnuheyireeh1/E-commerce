@@ -5,7 +5,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Get both token and role from storage
   const isLoggedIn = localStorage.getItem('token'); 
   const isAdmin = localStorage.getItem('role') === 'admin'; 
 
@@ -13,7 +12,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('role'); // Clear role on logout
+    localStorage.removeItem('role');
     navigate('/login');
   };
 
@@ -48,7 +47,6 @@ const Navbar = () => {
           {isActive('/shop') && <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-gray-950 rounded-full"></span>}
         </div>
 
-        {/* User Specific Link */}
         {isLoggedIn && !isAdmin && (
           <div className='relative group'>
             <Link 
@@ -61,7 +59,6 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Admin Specific Link - NEW */}
         {isLoggedIn && isAdmin && (
           <div className='relative group'>
             <Link 
